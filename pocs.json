@@ -1,18 +1,19 @@
 [
   {
-    "id": 1771513255498,
-    "title": "mulesoft helloworld app master+++",
+    "id": 1771513564659,
+    "title": "mulesoft helloworld app master",
     "folderName": "mulesoft-helloworld-app-master",
     "description": "Imported project structure.",
     "tags": [
-      "MuleSoft"
+      "MuleSoft",
+      "Manual Upload"
     ],
     "difficulty": "Medium",
     "authorId": "mWZ4wMxHfcRjQmLvYo3UYXAYh3G2",
     "authorName": "KAVISH Sharma",
-    "createdAt": 1771513255498,
+    "createdAt": 1771513564659,
     "icon": "Code",
     "repoUrl": "https://github.com/kavishworks45-design/mule-poc-library/tree/main/mulesoft-helloworld-app-master",
-    "updated": "2026-02-19T15:00:56.648Z"
+    "updated": "2026-02-19T15:06:05.799Z"
   }
 ]
