@@ -1,0 +1,127 @@
+{
+  "id": 1771967224430,
+  "title": "mulesoft helloworld app master_3",
+  "description": "This Mule 3.x application exposes a simple HTTP endpoint at `/helloWorld`. Upon receiving a GET request, it processes the message by setting its payload to the static string \"Hello World\" and then returns this string as the HTTP response. It's a foundational example demonstrating basic HTTP inbound connectivity and payload transformation in Mule.",
+  "tags": [
+    "HTTP",
+    "API",
+    "Basic",
+    "Hello World",
+    "Mule 3",
+    "Integration"
+  ],
+  "difficulty": "Beginner",
+  "authorId": "mWZ4wMxHfcRjQmLvYo3UYXAYh3G2",
+  "authorName": "KAVISH Sharma",
+  "createdAt": 1771967224430,
+  "updated": "2026-02-24T21:07:04.430Z",
+  "icon": "Zap",
+  "healthScore": 35,
+  "bestPractices": [
+    {
+      "title": "Global Error Handler Present",
+      "passed": false,
+      "reason": "No global error handler configuration was found for robust exception management."
+    },
+    {
+      "title": "Hardcoded Secrets/Credentials",
+      "passed": false,
+      "reason": "MuleSoft deployment credentials (username/password) are hardcoded in the pom.xml file, posing a significant security risk."
+    },
+    {
+      "title": "Use of Secure Properties",
+      "passed": false,
+      "reason": "No secure property placeholders (e.g., `secure::`) were identified for sensitive configuration values."
+    },
+    {
+      "title": "Runtime Version Modernization",
+      "passed": false,
+      "reason": "The project is built on Mule 3.8.x, which is an end-of-life runtime version and should be migrated to Mule 4 for security, performance, and feature improvements."
+    }
+  ],
+  "documentation": "# Project Guide\n\n## Overview\nThis project, `hello-world`, is a minimalist Mule 3.8.3 application designed to illustrate basic HTTP request handling and payload manipulation. It exposes a single HTTP endpoint that responds with a static \"Hello World\" message. The application serves as a starting point for understanding how to define HTTP listeners and perform simple transformations within a Mule flow.\n\n## Setup and Deployment\nTo deploy this application, ensure you have a Mule 3.8.x runtime environment. The `pom.xml` contains CloudHub deployment configurations, but it currently uses hardcoded credentials (`muleUser`/`mulePassword`). For production deployments, these should be externalized and secured.\n\n## Endpoints\n- **GET /helloWorld**: This is the primary endpoint. It accepts an HTTP GET request and returns the string \"Hello World\" as the response payload.\n\n## Configuration\n- `HTTP_Listener_Configuration`: Configures an HTTP listener to bind to `0.0.0.0` on a port defined by the `http.port` property. This property is dynamically assigned during testing or expected to be provided at runtime.\n\n## Flow Details\n- `HelloWorldFlow1`: \n    - **HTTP Listener**: Listens on the configured HTTP endpoint at the `/helloWorld` path.\n    - **Set Payload**: Replaces the incoming message payload with the string \"Hello World\".",
+  "architecture": {
+    "source": {
+      "name": "HTTP Client",
+      "type": "Source",
+      "icon": "Smartphone",
+      "color": "blue"
+    },
+    "process": {
+      "name": "Mule 3.8.3 Application",
+      "type": "Process",
+      "icon": "Box",
+      "color": "purple"
+    },
+    "target": {
+      "name": "HTTP Client",
+      "type": "Target",
+      "icon": "Smartphone",
+      "color": "green"
+    }
+  },
+  "logicBreakdown": {
+    "cards": [
+      {
+        "title": "Receive HTTP Request",
+        "type": "Entry Point",
+        "description": "The flow starts with an HTTP Listener configured to listen on a dynamic port and path `/helloWorld`, accepting incoming GET requests.",
+        "color": "blue"
+      },
+      {
+        "title": "Set Static Payload",
+        "type": "Transformation",
+        "description": "After receiving the request, the message payload is transformed to a constant string value: 'Hello World'.",
+        "color": "purple"
+      },
+      {
+        "title": "Send HTTP Response",
+        "type": "Exit Point",
+        "description": "The transformed payload ('Hello World') is sent back as the HTTP response to the original client.",
+        "color": "green"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "Mule Core",
+      "version": "3.8.1",
+      "type": "Runtime"
+    },
+    {
+      "name": "Mule Spring Config Module",
+      "version": "3.8.1",
+      "type": "Module"
+    },
+    {
+      "name": "Mule HTTP Transport",
+      "version": "3.8.1",
+      "type": "Transport"
+    },
+    {
+      "name": "Mule File Transport",
+      "version": "3.8.1",
+      "type": "Transport"
+    },
+    {
+      "name": "Mule JDBC Transport",
+      "version": "3.8.1",
+      "type": "Transport"
+    },
+    {
+      "name": "Mule JMS Transport",
+      "version": "3.8.1",
+      "type": "Transport"
+    },
+    {
+      "name": "Mule VM Transport",
+      "version": "3.8.1",
+      "type": "Transport"
+    },
+    {
+      "name": "Mule Salesforce Connector",
+      "version": "7.2.0",
+      "type": "Connector"
+    }
+  ]
+}
