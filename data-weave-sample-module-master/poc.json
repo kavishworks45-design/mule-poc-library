@@ -1,0 +1,90 @@
+{
+  "id": 1771963368409,
+  "title": "data weave sample module master",
+  "description": "This project is a DataWeave module, specifically a reusable library containing common string manipulation functions. It extends DataWeave's built-in capabilities, allowing Mule applications to import and utilize these custom functions (like repeating a string). The module is packaged for deployment to Anypoint Exchange, facilitating reuse across multiple projects. It exemplifies creating modular, testable DataWeave code.",
+  "tags": [
+    "DataWeave",
+    "Module",
+    "Reusable Component",
+    "Library",
+    "Custom Function"
+  ],
+  "difficulty": "Intermediate",
+  "authorId": "mWZ4wMxHfcRjQmLvYo3UYXAYh3G2",
+  "authorName": "KAVISH Sharma",
+  "createdAt": 1771963368409,
+  "updated": "2026-02-24T20:02:48.409Z",
+  "icon": "Code",
+  "healthScore": 95,
+  "bestPractices": [
+    {
+      "title": "DataWeave Module Documentation",
+      "passed": true,
+      "reason": "The `StringUtils.dwl` file includes Javadoc-style comments explaining the module's purpose and the `times` function."
+    },
+    {
+      "title": "DataWeave Unit Tests",
+      "passed": true,
+      "reason": "Comprehensive unit tests are provided in `StringUtilsTest.dwl` using `dw::test` to validate the `times` function's behavior."
+    },
+    {
+      "title": "Clear Function Signatures",
+      "passed": true,
+      "reason": "The `times` function in `StringUtils.dwl` uses explicit type annotations for its parameters (`value: String`, `amount: Number`), improving readability and maintainability."
+    },
+    {
+      "title": "Hardcoded Secrets / External Connectivity",
+      "passed": true,
+      "reason": "As a pure DataWeave utility module, it does not connect to external systems or contain any hardcoded credentials, making this check irrelevant and passing by design."
+    }
+  ],
+  "documentation": "# Project Guide\n\n## Overview\nThis project defines a DataWeave module named `string-utils-weave-module` which provides custom string utility functions. The primary function `times` allows repeating a given string a specified number of times. This module is designed to be published to Anypoint Exchange and consumed by other Mule applications as a reusable DataWeave library, enhancing code modularity and reusability. It includes unit tests to ensure the correctness of the implemented functions.\n\n## Module Structure\n- `pom.xml`: Defines project metadata, dependencies (DataWeave runtime, testing framework), and build plugins (weave-maven-plugin for testing and deployment to Exchange).\n- `src/main/resources/org/mule/commons/StringUtils.dwl`: Contains the core DataWeave functions, including `times` for string repetition. It is commented for clarity.\n- `src/test/dwtest/org/mule/commons/StringUtilsTest.dwl`: Provides unit tests for the `StringUtils` module, verifying the `times` function's behavior under various conditions (e.g., positive repetitions, zero repetitions).",
+  "architecture": {
+    "source": {
+      "name": "Mule Application (Consumer)",
+      "type": "Application",
+      "icon": "App",
+      "color": "blue"
+    },
+    "process": {
+      "name": "DataWeave Module",
+      "type": "Library",
+      "icon": "Box",
+      "color": "purple"
+    },
+    "target": {
+      "name": "Mule Application (Output)",
+      "type": "Application",
+      "icon": "App",
+      "color": "green"
+    }
+  },
+  "logicBreakdown": {
+    "cards": [
+      {
+        "title": "String Repetition Function (`times`)",
+        "type": "Core Logic",
+        "description": "The `times` function takes a `String` value and a `Number` amount. It repeatedly concatenates the `value` to itself `amount` times. If `amount` is 0 or less, it returns an empty string. This function demonstrates basic DataWeave looping and string manipulation, packaged for reusability.",
+        "color": "orange"
+      },
+      {
+        "title": "Module Packaging & Testing",
+        "type": "Mechanism",
+        "description": "The project uses Maven to package the DataWeave module. The `weave-maven-plugin` is configured to execute DataWeave unit tests (`StringUtilsTest.dwl`) during the `test` phase, ensuring the module's functions work as expected before deployment. Distribution to Anypoint Exchange is configured via `distributionManagement`.",
+        "color": "teal"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "org.mule.weave:runtime",
+      "version": "2.3.0",
+      "type": "Core Library"
+    },
+    {
+      "name": "org.mule.weave:wtf",
+      "version": "1.0.2",
+      "type": "Testing Framework"
+    }
+  ]
+}
