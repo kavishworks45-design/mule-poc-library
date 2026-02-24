@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	  xmlns:ms-inference="http://www.mulesoft.org/schema/mule/ms-inference"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	  xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	  xmlns="http://www.mulesoft.org/schema/mule/core"
+	  xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	  xsi:schemaLocation="
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+        http://www.mulesoft.org/schema/mule/munit-tools http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+        http://www.mulesoft.org/schema/mule/ms-inference http://www.mulesoft.org/schema/mule/ms-inference/current/mule-ms-inference.xsd
+        http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+
+	<munit:config name="tools-native-template.xml">
+		<munit:parameterizations>
+			<munit:parameterization name="config-ai21labs" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="Ai21labsConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-anthropic" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="AnthropicConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-azure-ai-foundry" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="azureAiFoundryConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-azure-openai" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="AzureOpenAIConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-cerebras" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="CerebrasConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-cohere" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="CohereConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-deepinfra" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="DeepinfraConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<!-- Deepseek integrations might not work in local due to sever restrictions, but works with jenkins pipeline-->
+			<!-- Commenting deepseek tools flaky test
+			<munit:parameterization name="config-deepseek" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="DeepseekConfig" />
+				</munit:parameters>
+			</munit:parameterization>-->
+			<munit:parameterization name="config-fireworks" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="FireworksConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-gemini" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="GeminiConfig" />
+					<munit:parameter propertyName="finishReason" value="STOP" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-github" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="GithubConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-groq" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="GroqConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-heroku" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="HerokuTextConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<!--<munit:parameterization name="config-hugging-face" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="HuggingFaceConfig" />
+					<munit:parameter propertyName="llmModel" value="${hugging-face.llmModel}" />
+				</munit:parameters>
+			</munit:parameterization>-->
+			<munit:parameterization name="config-mistralai">
+				<munit:parameters>
+					<munit:parameter propertyName="config" value="MistralAIConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-nvidia">
+				<munit:parameters>
+					<munit:parameter propertyName="config" value="NvidiaConfig"/>
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-openai">
+				<munit:parameters>
+					<munit:parameter propertyName="config" value="OpenAIConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-openai-compatible">
+				<munit:parameters>
+					<munit:parameter propertyName="config" value="OpenAICompatibleConfig"/>
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-openrouter" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="OpenrouterConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-portkey" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="PortkeyConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-together" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="TogetherConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-xai" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="XAiConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<!--<munit:parameterization name="config-xinference" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="XInferenceConfig" />
+				</munit:parameters>
+			</munit:parameterization>-->
+			<munit:parameterization name="config-zhipu" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="ZhipuConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+		</munit:parameterizations>
+	</munit:config>
+
+	<munit:test name="TOOLS_NATIVE_TEMPLATE_OPERATION-Test" doc:id="aa9159ad-0dca-48bc-a598-dc05a660c05c" description="Test">
+		<munit:execution>
+			<try doc:name="Try">
+				<flow-ref doc:name="Flow-ref to TOOLS_NATIVE_TEMPLATE_OPERATION" doc:id="5b407e10-0484-45f0-8fce-cafe8c6cd720" name="tools_native_template"/>
+			<error-handler>
+				<on-error-continue type="ms-inference:RATE_LIMIT_EXCEEDED" doc:name="On Error Continue with mock values">
+					<logger level="INFO" message="Continuing with the flow as rate limit exceeded"/>
+					<ee:transform doc:name="Transform Message" doc:id="510a60ca-08b6-4311-b979-cb5f67e8ce4d" >
+						<ee:message >
+							<ee:set-payload><![CDATA[%dw 2.0
+								output application/json
+								---
+								{
+									"payload": {
+										// Create a `tools` array containing an object with the required function name
+										"tools": [
+											{
+												"id": "call_temp_5678",
+												"type": "function",
+												"function": {
+													"name": "get_current_temperature",
+													"arguments": "{ \"location\": \"San Francisco, CA\", \"unit\": \"celsius\" }"
+												}
+											}
+										]
+									}
+								}
+								]]>
+							</ee:set-payload>
+						</ee:message>
+					</ee:transform>
+				</on-error-continue>
+			</error-handler>
+		</try>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that
+					doc:name="Assert (tools has specific function) OR (response contains keyword)"
+					doc:id="a1b2c3d4-e5f6-a7b8-c9d0-1a2b3c4d5e6f"
+					expression="#[((sizeOf((payload.payload.tools default []) filter (tool) -> tool.function != null) > 0)
+					and (sizeOf((payload.payload.tools default []) filter (tool) -> (tool.function.name default &quot;&quot;)
+					 == &quot;get_current_temperature&quot;) > 0)) or ((payload.payload.response default &quot;&quot;) contains &quot;get_current_temperature&quot;)]"
+					is="#[MunitTools::equalTo(true)]"
+					message="The response must contain a tool with the 'get_current_temperature' function or mention it in the response text." />
+		</munit:validation>
+	</munit:test>
+
+	<sub-flow name="tools_native_template" doc:id="a474f4ff-286c-4810-bb5e-8cd5a3f643bf">
+		<set-variable
+				value="#[%dw 2.0
+            output application/json
+            ---
+            {
+                'template': 'You are an helpful assistant',
+                'instructions': 'Answer the request with politeness.',
+                'dataset': 'What is the current temperature in Zurich city of Switzerland in Celsius?',
+                'tools': [
+                    {
+                        'type': 'function',
+                        'function': {
+                            'name': 'get_current_temperature',
+                            'description': 'Get the current temperature for a specific location',
+                            'parameters': {
+                                'type': 'object',
+                                'properties': {
+                                    'location': {
+                                        'type': 'string',
+                                        'description': 'The city and state, e.g., San Francisco, CA'
+                                    },
+                                    'unit': {
+                                        'type': 'string',
+                                        'enum': ['Celsius', 'Fahrenheit'],
+                                        'description': 'The temperature unit to use. Infer this from the user\'s location.'
+                                    }
+                                },
+                                'required': ['location', 'unit']
+                            }
+                        }
+                    },
+                    {
+                        'type': 'function',
+                        'function': {
+                            'name': 'get_rain_probability',
+                            'description': 'Get the probability of rain for a specific location',
+                            'parameters': {
+                                'type': 'object',
+                                'properties': {
+                                    'location': {
+                                        'type': 'string',
+                                        'description': 'The city and state, e.g., San Francisco, CA'
+                                    }
+                                },
+                                'required': ['location']
+                            }
+                        }
+                    },
+                    {
+                        'type': 'function',
+                        'function': {
+                            'name': 'get_delivery_date',
+                            'description': 'Get the delivery date for a customer\'s order. Call this whenever you need to know the delivery date, for example when a customer asks \'Where is my package\'',
+                            'parameters': {
+                                'type': 'object',
+                                'properties': {
+                                    'order_id': {
+                                        'type': 'string',
+                                        'description': 'The customer\'s order ID.'
+                                    }
+                                },
+                                'required': ['order_id']
+                            }
+                        }
+                    }
+                ]
+            }]"
+				doc:name="Set Variable"
+				doc:id="e06c8f7b-0310-401c-a556-3cf46551bb7e"
+				variableName="testPayload" />
+		<ms-inference:tools-native-template
+				doc:name="[Tools] Native Template (Reasoning only)"
+				doc:id="fecbf1b9-366a-4164-baa4-56ded458b607"
+				config-ref="${config}">
+			<ms-inference:template><![CDATA[#[vars.testPayload.template]]]></ms-inference:template>
+			<ms-inference:instructions><![CDATA[#[vars.testPayload.instructions]]]></ms-inference:instructions>
+			<ms-inference:data><![CDATA[#[vars.testPayload.dataset]]]></ms-inference:data>
+			<ms-inference:tools><![CDATA[#[vars.testPayload.tools]]]></ms-inference:tools>
+		</ms-inference:tools-native-template>
+		<ee:transform
+				doc:name="Transform Message"
+				doc:id="bba2fcbe-2617-497f-898f-b4b2e94c8c6f">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+                output application/json
+                ---
+                {
+                    payload: payload,
+                    attributes: attributes
+                }]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>

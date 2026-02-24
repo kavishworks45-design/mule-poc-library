@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+	  xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	  xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	  xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	  xmlns:ms-inference="http://www.mulesoft.org/schema/mule/ms-inference"
+	  xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="   http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+	  http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+	  http://www.mulesoft.org/schema/mule/ms-inference http://www.mulesoft.org/schema/mule/ms-inference/current/mule-ms-inference.xsd
+	   http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+
+	<munit:config name="chat-completion.xml">
+		<munit:parameterizations >
+			<munit:parameterization name="config-ai21labs" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="Ai21labsConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-anthropic" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="AnthropicConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-azure-ai-foundry" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="azureAiFoundryConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-azure-openai" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="AzureOpenAIConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-cerebras" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="CerebrasConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-cohere" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="CohereConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-deepinfra" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="DeepinfraConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<!-- Deepseek integrations might not work in local due to sever restrictions, but works with jenkins pipeline-->
+			<munit:parameterization name="config-deepseek" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="DeepseekConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-fireworks" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="FireworksConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-gemini" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="GeminiConfig" />
+					<munit:parameter propertyName="finishReason" value="STOP" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-github" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="GithubConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-groq" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="GroqConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-heroku" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="HerokuTextConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-mistralai" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="MistralAIConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-nvidia">
+				<munit:parameters>
+					<munit:parameter propertyName="config" value="NvidiaConfig"/>
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-openai" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="OpenAIConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-openai-compatible">
+				<munit:parameters>
+					<munit:parameter propertyName="config" value="OpenAICompatibleConfig"/>
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-openrouter" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="OpenrouterConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-portkey" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="PortkeyConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-together" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="TogetherConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+			<munit:parameterization name="config-vertexaiexpress" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="VertexAiExpressConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+            <munit:parameterization name="config-xai" >
+                <munit:parameters >
+                    <munit:parameter propertyName="config" value="XAiConfig" />
+                </munit:parameters>
+            </munit:parameterization>
+			<!--<munit:parameterization name="config-xinference" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="XInferenceConfig" />
+				</munit:parameters>
+			</munit:parameterization>-->
+			<munit:parameterization name="config-zhipu" >
+				<munit:parameters >
+					<munit:parameter propertyName="config" value="ZhipuConfig" />
+				</munit:parameters>
+			</munit:parameterization>
+		</munit:parameterizations>
+	</munit:config>
+
+	<munit:test doc:id="cc682dfa-1bb7-40b9-a51a-10fb79190f83" name="chat_completion_operation_test">
+		<munit:execution>
+			<try doc:name="Try">
+				<flow-ref doc:id="c3cd44a2-cf3c-4a7f-89be-65357b7242cc" doc:name="Flow-ref to chat_completion_operation" name="chat_completion_operation"/>
+				<logger level="DEBUG" message="#[payload]"/>
+			<error-handler>
+				<on-error-continue type="ms-inference:RATE_LIMIT_EXCEEDED" doc:name="On Error Continue with mock values">
+					<logger level="INFO" message="Continuing with the flow as rate limit exceeded"/>
+					<ee:transform doc:name="Transform Message" doc:id="510a60ca-08b6-4311-b979-cb5f67e8ce4d" >
+						<ee:message >
+							<ee:set-payload ><![CDATA[%dw 2.0
+										output application/json
+										---
+										{
+											"payload": {
+												"response": "Bern"
+											}
+										}]]>
+							</ee:set-payload>
+						</ee:message>
+					</ee:transform>
+				</on-error-continue>
+			</error-handler>
+		</try>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="payload.response" doc:id="5dac8f10-3c9c-4753-8888-5cadefccbad3" message="Payload response is wrong answer" expression="#[payload.payload.response]" is="#[MunitTools::containsString('Bern')]" />
+		</munit:validation>
+	</munit:test>
+
+	<sub-flow name="chat_completion_operation" >
+		<set-variable value='#[%dw 2.0
+			output application/json
+			---
+			[{
+			  "role": "assistant",
+			  "content": "You are a helpful assistant."
+			},
+			{
+			  "role": "user",
+			  "content": "What is the capital of Switzerland!"
+			}
+			]]' doc:name="Set Variable" doc:id="00231872-9564-4fad-b580-4f745c16ac9d" variableName="testPayload"/>
+		<ms-inference:chat-completions doc:name="[Chat] Completions" doc:id="80433396-b05a-4ca6-8e89-18845c897cf8" config-ref="${config}">
+			<ms-inference:messages ><![CDATA[#[vars.testPayload]]]></ms-inference:messages>
+		</ms-inference:chat-completions>
+		<ee:transform doc:name="Transform Message" doc:id="e0299e83-2c5c-447e-a77d-c15c15cdcc79" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+					output application/json
+					---
+					{
+						payload: payload,
+						attributes: attributes
+					}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>
