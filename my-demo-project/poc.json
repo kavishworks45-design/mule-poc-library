@@ -1,0 +1,104 @@
+{
+  "id": 1771963584160,
+  "title": "My Demo Project",
+  "description": "This project defines a DataWeave library, `example-project`, designed to encapsulate reusable transformation logic. Its primary function, as seen in `main.dwl`, is to perform a simple identity transformation on an input payload, converting it to JSON format. This library is intended to be consumed by other Mule applications, providing a standardized and shareable piece of DataWeave code without containing any direct Mule flows or connectors. It promotes modularity by centralizing common data transformation patterns.",
+  "tags": [
+    "DataWeave",
+    "Transformation",
+    "Library",
+    "JSON",
+    "Reusable Component"
+  ],
+  "difficulty": "Beginner",
+  "authorId": "oZn619cKpqTYoYtIUgsX73aAh9k2",
+  "authorName": "Mule",
+  "createdAt": 1771963584160,
+  "updated": "2026-02-24T20:06:24.160Z",
+  "icon": "Code",
+  "healthScore": 90,
+  "bestPractices": [
+    {
+      "title": "Hardcoded Secrets",
+      "passed": true,
+      "reason": "No hardcoded credentials, tokens, or sensitive URLs were found within the provided DataWeave script or POM file. The POM mentions external credential management (e.g., in ~/.m2/settings.xml) for publishing to Exchange."
+    },
+    {
+      "title": "Global Error Handler",
+      "passed": false,
+      "reason": "As this is a DataWeave library (packaging dw-library), it does not contain Mule flows or global error handlers. Error handling is the responsibility of the consuming Mule application, not the library itself."
+    },
+    {
+      "title": "Secure Property Placeholders",
+      "passed": false,
+      "reason": "Secure property placeholders (e.g., secure::) are not applicable within a DataWeave library project. Property management, including secure properties, is handled by the consuming Mule application."
+    },
+    {
+      "title": "Clear and Concise DataWeave Logic",
+      "passed": true,
+      "reason": "The DataWeave script `main.dwl` is very simple and clear, performing a straightforward identity transformation on the payload to JSON, which makes its purpose immediately understandable."
+    }
+  ],
+  "documentation": "# Project Guide\n\n## Overview\nThis project, `example-project`, is a DataWeave library containing reusable transformation logic. It is built using Maven with `dw-library` packaging. The core functionality is defined in `src/main/dw/main.dwl`, which processes an incoming payload and outputs it as JSON. This library can be imported and utilized by any Mule 4 application to apply the defined transformations.\n\n## DataWeave Scripts\n- **`main.dwl`**: The main transformation script. It performs an identity mapping on the input `payload`, converting the result to `application/json`.\n\n## Dependencies\nKey dependencies include the DataWeave runtime and core modules, enabling robust data transformation capabilities. Testing dependencies are also included for unit testing the DataWeave scripts.\n\n## Usage\nTo use this library, add it as a dependency in your Mule application's `pom.xml`. Once imported, you can invoke the DataWeave functions defined within this library from your Mule flows to transform data.",
+  "architecture": {
+    "source": {
+      "name": "Mule Application (Calling Context)",
+      "type": "Source",
+      "icon": "Cloud",
+      "color": "blue"
+    },
+    "process": {
+      "name": "DataWeave Transformation Library",
+      "type": "Process",
+      "icon": "Box",
+      "color": "purple"
+    },
+    "target": {
+      "name": "Mule Application (Consuming Context)",
+      "type": "Target",
+      "icon": "Database",
+      "color": "green"
+    }
+  },
+  "logicBreakdown": {
+    "cards": [
+      {
+        "title": "Payload Identity Transformation",
+        "type": "Transformation",
+        "description": "The `main.dwl` script processes the incoming `payload`. It iterates over the items within the payload (assuming an array or iterable structure) and returns each item without modification. The entire output is formatted as `application/json`. This acts as a pass-through transformation for the payload, ensuring it's in the desired JSON format.",
+        "color": "blue"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "DataWeave Runtime",
+      "version": "2.4.0-20220420",
+      "type": "DataWeave Module"
+    },
+    {
+      "name": "DataWeave Core Modules",
+      "version": "2.4.0-20220420",
+      "type": "DataWeave Module"
+    },
+    {
+      "name": "DataWeave Java Module",
+      "version": "2.4.0-20220420",
+      "type": "DataWeave Module"
+    },
+    {
+      "name": "DataWeave YAML Module",
+      "version": "2.4.0-20220420",
+      "type": "DataWeave Module"
+    },
+    {
+      "name": "DataWeave NDJSON Module",
+      "version": "2.4.0-20220420",
+      "type": "DataWeave Module"
+    },
+    {
+      "name": "DataWeave Testing Framework",
+      "version": "1.1.2",
+      "type": "Testing Framework"
+    }
+  ]
+}
