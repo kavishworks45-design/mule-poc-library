@@ -1,0 +1,84 @@
+{
+  "id": 1772025869057,
+  "title": "getting started hello mule main",
+  "description": "This MuleSoft project is a foundational 'Hello World' example, exposing a simple HTTP GET endpoint at `/hellomule`. Upon invocation, it responds with a static 'Hello Mule' string. It demonstrates basic HTTP Listener configuration and payload manipulation, serving as an entry point for learning MuleSoft application development. There are no complex integrations or advanced patterns like batch processing or watermarking involved.",
+  "tags": [
+    "HTTP",
+    "API",
+    "Hello World",
+    "Beginner"
+  ],
+  "difficulty": "Beginner",
+  "authorId": "cEXc6s45pXMavDPaj1RGVVv7Y1s1",
+  "authorName": "kavish sharma",
+  "createdAt": 1772025869057,
+  "updated": "2026-02-25T13:24:29.057Z",
+  "icon": "Zap",
+  "healthScore": 75,
+  "bestPractices": [
+    {
+      "title": "Global Error Handler",
+      "passed": false,
+      "reason": "No explicit global or flow-level error handler found in hellomule.xml. In a real-world scenario, this would lead to default error responses and lack of custom error handling logic."
+    },
+    {
+      "title": "Hardcoded Secrets",
+      "passed": true,
+      "reason": "No hardcoded credentials, tokens, or sensitive information detected in XML or POM files. Configuration values like port and path are hardcoded but not secrets."
+    },
+    {
+      "title": "Configuration Externalization",
+      "passed": false,
+      "reason": "HTTP Listener host ('0.0.0.0'), port ('8081'), path ('/hellomule'), and the 'Hello Mule' payload string are hardcoded directly in the flow. Best practice recommends externalizing such configuration values using properties files (e.g., using `p:`) for better maintainability and environment specificity."
+    }
+  ],
+  "documentation": "# Project Guide\n\n## Overview\nThis project, `hellomule`, is a minimal MuleSoft application designed to introduce basic API development. It provides a single HTTP endpoint that, when accessed, returns a predefined string.\n\n## Functionality\nThe application consists of one primary flow:\n- **`hellomuleFlow`**: Listens for HTTP GET requests on `/hellomule` at port `8081`. Upon receiving a request, it sets the message payload to the literal string 'Hello Mule' and returns it as the response.\n\n## Configuration\n- **HTTP Listener**: Configured to listen on `0.0.0.0:8081` for requests to `/hellomule`.\n- **Payload Transformation**: A `set-payload` component is used to hardcode the response. \n\n## Usage\nTo run this application, deploy it to a Mule runtime. Once deployed, you can access the endpoint using a web browser or a tool like cURL:\nbash\ncurl http://localhost:8081/hellomule\n\nThe expected output will be `Hello Mule`.\n",
+  "architecture": {
+    "source": {
+      "name": "HTTP Client",
+      "type": "Source",
+      "icon": "Cloud",
+      "color": "blue"
+    },
+    "process": {
+      "name": "hellomule (Mule App)",
+      "type": "Process",
+      "icon": "Box",
+      "color": "purple"
+    },
+    "target": {
+      "name": "HTTP Client",
+      "type": "Target",
+      "icon": "Cloud",
+      "color": "green"
+    }
+  },
+  "logicBreakdown": {
+    "cards": [
+      {
+        "title": "HTTP Listener",
+        "type": "Trigger",
+        "description": "An HTTP Listener is configured to listen for incoming requests on path `/hellomule` on port `8081`.",
+        "color": "blue"
+      },
+      {
+        "title": "Set Payload",
+        "type": "Transformation",
+        "description": "The incoming payload is replaced with a static string value: 'Hello Mule'. This string is then returned as the HTTP response.",
+        "color": "purple"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "mule-http-connector",
+      "version": "1.5.25",
+      "type": "Connector"
+    },
+    {
+      "name": "mule-sockets-connector",
+      "version": "1.2.1",
+      "type": "Connector"
+    }
+  ]
+}
