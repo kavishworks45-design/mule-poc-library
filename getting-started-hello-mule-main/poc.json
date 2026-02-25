@@ -1,0 +1,89 @@
+{
+  "id": 1772028714944,
+  "title": "getting started hello mule main",
+  "description": "This MuleSoft project implements a very basic HTTP API. It listens for incoming HTTP GET requests on a specific path, and upon reception, it simply transforms the message payload to a static \"Hello Mule\" string. It's a fundamental example demonstrating an HTTP endpoint and a payload transformation, without any complex integration patterns, external system calls, or advanced error handling mechanisms.",
+  "tags": [
+    "HTTP",
+    "Basic API",
+    "Hello World",
+    "GET Request"
+  ],
+  "difficulty": "Beginner",
+  "authorId": "cEXc6s45pXMavDPaj1RGVVv7Y1s1",
+  "authorName": "kavish sharma",
+  "createdAt": 1772028714944,
+  "updated": "2026-02-25T14:11:54.944Z",
+  "icon": "Zap",
+  "healthScore": 65,
+  "bestPractices": [
+    {
+      "title": "Global Error Handler",
+      "passed": false,
+      "reason": "No global or flow-specific <error-handler> component is defined, which can lead to unhandled exceptions and default Mule error responses."
+    },
+    {
+      "title": "Hardcoded Secrets",
+      "passed": true,
+      "reason": "No explicit secrets (e.g., API keys, passwords) were found hardcoded in the configuration files."
+    },
+    {
+      "title": "Configuration Externalization",
+      "passed": false,
+      "reason": "The HTTP Listener host (0.0.0.0) and port (8081) are hardcoded directly in the XML, rather than externalized using property placeholders (e.g., ${http.port})."
+    },
+    {
+      "title": "Structured Logging",
+      "passed": true,
+      "reason": "A log4j2.xml configuration is provided with a RollingFileAppender and a structured pattern layout, which is good practice for production logging."
+    }
+  ],
+  "documentation": "# Project Guide\n\n## Overview\nThis is a simple MuleSoft application that exposes a basic HTTP endpoint. It serves as a \"Hello World\" example for Mule 4.\n\n## How to Run\n1. Ensure you have Maven and MuleSoft Anypoint Studio or Mule Runtime installed.\n2. Clone this repository.\n3. Navigate to the project root directory in your terminal.\n4. To run from Maven:\n   bash\n   mvn clean package mule:deploy\n   \n   (Note: This will deploy to a local runtime if configured, or you can run directly from Studio).\n5. The application will start on port `8081`.\n\n## API Endpoint\nOnce the application is running, you can access the following endpoint:\n\n**GET /hellomule**\n\nThis endpoint will respond with the plain text `Hello Mule`.\n\n**Example:**\nbash\ncurl http://localhost:8081/hellomule\n\n**Expected Response:**\n\nHello Mule\n\n",
+  "architecture": {
+    "source": {
+      "name": "HTTP Listener",
+      "type": "Source",
+      "icon": "Cloud",
+      "color": "blue"
+    },
+    "process": {
+      "name": "Mule App",
+      "type": "Process",
+      "icon": "Box",
+      "color": "purple"
+    },
+    "target": {
+      "name": "HTTP Client",
+      "type": "Target",
+      "icon": "Smartphone",
+      "color": "green"
+    }
+  },
+  "logicBreakdown": {
+    "cards": [
+      {
+        "title": "HTTP Request Reception",
+        "type": "Flow Trigger",
+        "description": "The application listens for incoming HTTP GET requests on the path '/hellomule' using a configured HTTP Listener on port 8081.",
+        "color": "blue"
+      },
+      {
+        "title": "Set Static Payload",
+        "type": "Transformation",
+        "description": "Upon receiving a request, the payload of the message is transformed to the static string 'Hello Mule'. This string is then returned as the response to the client.",
+        "color": "purple"
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "mule-http-connector",
+      "version": "1.5.25",
+      "type": "Connector"
+    },
+    {
+      "name": "mule-sockets-connector",
+      "version": "1.2.1",
+      "type": "Connector"
+    }
+  ]
+}
